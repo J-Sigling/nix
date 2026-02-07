@@ -23,6 +23,7 @@
               "IdeaVIM"
               "com.joshestein.ideavim-quickscope"
               "nix-idea"
+              "com.intellij.ml.llm"
         ];
       in
       {
