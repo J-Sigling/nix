@@ -5,9 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     rust-overlay.url = "github:oxalica/rust-overlay";
+    nix-jetbrains-plugins.url = "github:nix-community/nix-jetbrains-plugins";
   };
 
-  outputs = { self, nixpkgs, flake-utils, rust-overlay }:
+  outputs = { self, nixpkgs, flake-utils, rust-overlay, nix-jetbrains-plugins }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         overlays = [ (import rust-overlay) ];
@@ -18,9 +19,10 @@
         rustToolchain = pkgs.rust-bin.stable.latest.default.override {
             extensions = [ "rust-src" ];
         };
+        jetbrainsPlugins = nix-jetbrains-plugins.packages.${system};
         rustroverWithPlugins = pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rust-rover [
-            "ideavim"
-            "nixidea"
+            jetbrainsPlugins.ideavim
+            jetbrainsPlugins.nixidea
         ];
       in
       {
