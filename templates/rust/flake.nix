@@ -19,10 +19,10 @@
         rustToolchain = pkgs.rust-bin.stable.latest.default.override {
             extensions = [ "rust-src" ];
         };
-        jetbrainsPlugins = nix-jetbrains-plugins.packages.${system};
-        rustroverWithPlugins = pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rust-rover [
-            jetbrainsPlugins.ideavim
-            jetbrainsPlugins.nixidea
+        rustroverWithPlugins = nix-jetbrains-plugins.lib.buildIdeWithPlugins pkgs "rust-rover" [
+              "IdeaVIM"
+              "com.joshestein.ideavim-quickscope"
+              "nix-idea"
         ];
       in
       {
