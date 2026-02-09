@@ -33,7 +33,7 @@
           LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
           shellHook = ''
             echo -e "\nStarting RustRover DevShell:\nloading..."
-            rust-rover
+            exec ~/.local/share/JetBrains/Toolbox/scripts/rustrover .
           '';
         };
       }
