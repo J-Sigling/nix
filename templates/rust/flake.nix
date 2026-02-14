@@ -30,10 +30,14 @@
             udev
             openssl
           ];
+
+          #Environment Variables
           LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
+          ACCOUNTS_URL = "http://localhost:3000/demo/adAccounts";
+
           shellHook = ''
             echo -e "\nStarting RustRover DevShell:\nloading..."
-            exec ~/.local/share/JetBrains/Toolbox/scripts/rustrover .
+            exec /home/siglaz/.local/share/JetBrains/Toolbox/scripts/rustrover .
           '';
         };
       }
