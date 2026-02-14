@@ -1,5 +1,5 @@
 {
-  description = "Personal Nix configurations and flake templates";
+  description = "Personal Nix configurations and flake libraries";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -12,45 +12,43 @@
   };
 
   outputs = { self, nixpkgs, home-manager, flake-utils, rust-overlay }:
-    let
-      system = "x86_64-linux";
-      rustFlake = import ./templates/rust/flake.nix;
-      rustOutputs = rustFlake.outputs {
-        inherit self nixpkgs flake-utils rust-overlay;
+    {
+      # NixOS configurations
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/nixos/configuration.nix
+            home-manager.nixosModules.home-manager
+          ];
+        };
+        # Add more machines here:
+        # another-machine = nixpkgs.lib.nixosSystem {
+        #   system = "x86_64-linux";
+        #   modules = [ ./hosts/another-machine/configuration.nix ];
+        # };
       };
-    in {
-    # NixOS configurations
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/nixos/configuration.nix
-          home-manager.nixosModules.home-manager
-        ];
-      };
-      # Add more machines here:
-      # another-machine = nixpkgs.lib.nixosSystem {
-      #   system = "x86_64-linux";
-      #   modules = [ ./hosts/another-machine/configuration.nix ];
-      # };
-    };
 
-    # Expose template devShells directly
-    devShells.${system} = {
-      rust = rustOutputs.devShell.${system};
-    };
-
-    # Dev shell templates
-    templates = {
-      rust = {
-        path = ./templates/rust;
-        description = "Default rust project template";
+      # Expose reusable library functions
+      lib = {
+        rust = import ./lib/rust.nix {
+          inherit nixpkgs flake-utils rust-overlay;
+        };
+        # Add more libraries here:
+        # python = import ./lib/python.nix { ... };
       };
-      # Add more templates here:
-      # python = {
-      #   path = ./templates/python;
-      #   description = "Python development environment";
-      # };
+
+      # Templates for new projects
+      templates = {
+        rust = {
+          path = ./templates/rust;
+          description = "Rust project template using the rust library";
+        };
+        # Add more templates here:
+        # python = {
+        #   path = ./templates/python;
+        #   description = "Python development environment";
+        # };
+      };
     };
-  };
 }
