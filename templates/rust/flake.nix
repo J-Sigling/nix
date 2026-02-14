@@ -11,6 +11,7 @@
   outputs = { self, nixpkgs, flake-utils, rust-overlay, nix-lib }:
     flake-utils.lib.eachDefaultSystem (system:
       let
+        pkgs = nixpkgs.legacyPackages.${system};
         rustLib = nix-lib.lib.rust.${system};
       in
       {
@@ -20,13 +21,13 @@
             # Add environment variables here
             # EXAMPLE_VAR = "value";
           };
-          extraNativeBuildInputs = [
+          extraNativeBuildInputs = with pkgs; [
             # Add build-time tools here
-            # pkgs.cmake
+            # cmake
           ];
-          extraBuildInputs = [
+          extraBuildInputs = with pkgs; [
             # Add runtime dependencies here
-            # pkgs.postgresql
+            # postgresql
           ];
           extraShellHook = ''
             # Add extra shell hook commands here

@@ -12,7 +12,7 @@ let
 in
 {
   # Function to create a Rust dev shell with additional packages
-  mkRustShell = { extraBuildInputs ? [], extraNativeBuildInputs ? [], extraEnv ? [], extraShellHook ? "" }:
+  mkRustShell = { extraBuildInputs ? [], extraNativeBuildInputs ? [], extraEnv ? {}, extraShellHook ? "" }:
     with pkgs;
     let
       allNativeBuildInputs = [
