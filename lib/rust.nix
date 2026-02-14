@@ -14,6 +14,9 @@ in
   # Function to create a Rust dev shell with additional packages
   mkRustShell = { extraBuildInputs ? [], extraNativeBuildInputs ? [], extraEnv ? {}, extraShellHook ? "" }:
     with pkgs; mkShell (extraEnv // {
+      #Environment Variables
+      LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
+
       nativeBuildInputs = [
         pkg-config
       ] ++ extraNativeBuildInputs;
@@ -24,9 +27,6 @@ in
         udev
         openssl
       ] ++ extraBuildInputs;
-
-      #Environment Variables
-      LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
 
       shellHook = ''
         echo -e "\nStarting RustRover DevShell:\nloading..."
