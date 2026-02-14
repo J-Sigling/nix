@@ -18,27 +18,41 @@
         rustToolchain = pkgs.rust-bin.stable.latest.default.override {
             extensions = [ "rust-src" ];
         };
+
+        # Function to create a Rust dev shell with additional packages
+        mkRustShell = { extraBuildInputs ? [], extraNativeBuildInputs ? [], extraEnv ? {}, shellHook ? "" }:
+          with pkgs; mkShell rec {
+            nativeBuildInputs = [
+              pkg-config
+            ] ++ extraNativeBuildInputs;
+
+            buildInputs = [
+              rustToolchain
+              bash
+              udev
+              openssl
+            ] ++ extraBuildInputs;
+
+            #Environment Variables
+            LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
+            ACCOUNTS_URL = "http://localhost:3000/demo/adAccounts";
+          } // extraEnv // {
+            shellHook = ''
+              echo -e "\nStarting RustRover DevShell:\nloading..."
+              exec /home/siglaz/.local/share/JetBrains/Toolbox/scripts/rustrover .
+              ${shellHook}
+            '';
+          };
       in
       {
-        devShell = with pkgs; mkShell rec {
-          nativeBuildInputs = [
-            pkg-config
-          ];
-          buildInputs = [
-            rustToolchain
-            bash
-            udev
-            openssl
-          ];
+        # Default devShell for this template
+        devShell = mkRustShell {};
 
-          #Environment Variables
-          LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
-          ACCOUNTS_URL = "http://localhost:3000/demo/adAccounts";
-
-          shellHook = ''
-            echo -e "\nStarting RustRover DevShell:\nloading..."
-            exec /home/siglaz/.local/share/JetBrains/Toolbox/scripts/rustrover .
-          '';
+        # Export the builder function for other projects to use
+        lib = {
+          inherit mkRustShell;
+          inherit rustToolchain;
+          inherit pkgs;
         };
       }
     );
