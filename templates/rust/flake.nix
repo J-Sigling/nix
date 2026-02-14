@@ -14,15 +14,15 @@
         rustLib = nix-lib.lib.rust.${system};
       in
       {
-        # Default devShell using the library
         devShell = rustLib.mkRustShell {
           # Add your project-specific customizations here
           extraEnv = {
-            ACCOUNTS_URL = "http://localhost:3000/demo/adAccounts";
           };
-          shellHook = ''
-            echo -e "\nStarting RustRover DevShell:\nloading..."
-            exec /home/siglaz/.local/share/JetBrains/Toolbox/scripts/rustrover .
+          extraNativeBuildInputs = {
+          };
+          extraBuildInputs = {
+          };
+          extraShellHook = ''
           '';
         };
       }
