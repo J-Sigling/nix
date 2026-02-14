@@ -12,7 +12,7 @@ let
 in
 {
   # Function to create a Rust dev shell with additional packages
-  mkRustShell = { extraBuildInputs ? [], extraNativeBuildInputs ? [], extraEnv ? {}, extraShellHook ? "" }:
+  mkRustShell = { extraBuildInputs ? [], extraNativeBuildInputs ? [], extraEnv ? [], extraShellHook ? "" }:
     with pkgs;
     let
       allBuildInputs = [
@@ -27,11 +27,11 @@ in
       ] ++ extraNativeBuildInputs;
     in
     mkShell (extraEnv // {
-      buildInputs = allBuildInputs;
-      nativeBuildInputs = allNativeBuildInputs;
-
       #Environment Variables
       LD_LIBRARY_PATH = lib.makeLibraryPath allBuildInputs;
+
+      buildInputs = allBuildInputs;
+      nativeBuildInputs = allNativeBuildInputs;
 
       shellHook = ''
         echo -e "\nStarting RustRover DevShell:\nloading..."
