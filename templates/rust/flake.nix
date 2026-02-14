@@ -17,12 +17,19 @@
         devShell = rustLib.mkRustShell {
           # Add your project-specific customizations here
           extraEnv = {
+            # Add environment variables here
+            # EXAMPLE_VAR = "value";
           };
-          extraNativeBuildInputs = {
-          };
-          extraBuildInputs = {
-          };
+          extraNativeBuildInputs = [
+            # Add build-time tools here
+            # pkgs.cmake
+          ];
+          extraBuildInputs = [
+            # Add runtime dependencies here
+            # pkgs.postgresql
+          ];
           extraShellHook = ''
+            # Add extra shell hook commands here
           '';
         };
       }
