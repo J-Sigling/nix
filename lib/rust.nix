@@ -13,20 +13,24 @@ in
 {
   # Function to create a Rust dev shell with additional packages
   mkRustShell = { extraBuildInputs ? [], extraNativeBuildInputs ? [], extraEnv ? {}, extraShellHook ? "" }:
-    with pkgs; mkShell (extraEnv // {
-      #Environment Variables
-      LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
-
-      nativeBuildInputs = [
-        pkg-config
-      ] ++ extraNativeBuildInputs;
-
+    with pkgs;
+    let
       buildInputs = [
         rustToolchain
         bash
         udev
         openssl
       ] ++ extraBuildInputs;
+    in
+    mkShell (extraEnv // {
+      nativeBuildInputs = [
+        pkg-config
+      ] ++ extraNativeBuildInputs;
+
+      inherit buildInputs;
+
+      #Environment Variables
+      LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
 
       shellHook = ''
         echo -e "\nStarting RustRover DevShell:\nloading..."
