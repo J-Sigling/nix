@@ -15,23 +15,22 @@ in
   mkRustShell = { extraBuildInputs ? [], extraNativeBuildInputs ? [], extraEnv ? [], extraShellHook ? "" }:
     with pkgs;
     let
+      allNativeBuildInputs = [
+        pkg-config
+      ] ++ extraNativeBuildInputs;
+
       allBuildInputs = [
         rustToolchain
         bash
         udev
         openssl
       ] ++ extraBuildInputs;
-
-      allNativeBuildInputs = [
-        pkg-config
-      ] ++ extraNativeBuildInputs;
     in
     mkShell (extraEnv // {
       #Environment Variables
       LD_LIBRARY_PATH = lib.makeLibraryPath allBuildInputs;
-
-      buildInputs = allBuildInputs;
       nativeBuildInputs = allNativeBuildInputs;
+      buildInputs = allBuildInputs;
 
       shellHook = ''
         echo -e "\nStarting RustRover DevShell:\nloading..."
