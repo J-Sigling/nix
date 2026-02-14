@@ -7,9 +7,18 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager }: {
+  outputs = { self, nixpkgs, home-manager, flake-utils, rust-overlay }:
+    let
+      system = "x86_64-linux";
+      rustFlake = import ./templates/rust/flake.nix;
+      rustOutputs = rustFlake.outputs {
+        inherit self nixpkgs flake-utils rust-overlay;
+      };
+    in {
     # NixOS configurations
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
@@ -24,6 +33,11 @@
       #   system = "x86_64-linux";
       #   modules = [ ./hosts/another-machine/configuration.nix ];
       # };
+    };
+
+    # Expose template devShells directly
+    devShells.${system} = {
+      rust = rustOutputs.devShell.${system};
     };
 
     # Dev shell templates
