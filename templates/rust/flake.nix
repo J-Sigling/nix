@@ -5,8 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     rust-overlay.url = "github:oxalica/rust-overlay";
-    # Reference your personal Nix flake library
-    nix-lib.url = "github:siglaz/nix";  # Update this to your actual GitHub username/repo
+    nix-lib.url = "github:j-sigling/nix";  # Update this to your actual GitHub username/repo
   };
 
   outputs = { self, nixpkgs, flake-utils, rust-overlay, nix-lib }:
