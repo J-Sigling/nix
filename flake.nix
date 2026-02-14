@@ -12,6 +12,11 @@
   };
 
   outputs = { self, nixpkgs, home-manager, flake-utils, rust-overlay }:
+    let
+      rustLib = import ./lib/rust.nix {
+        inherit nixpkgs flake-utils rust-overlay;
+      };
+    in
     {
       # NixOS configurations
       nixosConfigurations = {
@@ -30,13 +35,11 @@
       };
 
       # Expose reusable library functions
-      lib = {
-        rust = import ./lib/rust.nix {
-          inherit nixpkgs flake-utils rust-overlay;
-        };
+      lib = flake-utils.lib.eachDefaultSystem (system: {
+        rust = rustLib system;
         # Add more libraries here:
-        # python = import ./lib/python.nix { ... };
-      };
+        # python = pythonLib system;
+      });
 
       # Templates for new projects
       templates = {
