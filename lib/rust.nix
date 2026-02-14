@@ -12,8 +12,8 @@ let
 in
 {
   # Function to create a Rust dev shell with additional packages
-  mkRustShell = { extraBuildInputs ? [], extraNativeBuildInputs ? [], extraEnv ? {}, shellHook ? "" }:
-    with pkgs; mkShell rec {
+  mkRustShell = { extraBuildInputs ? [], extraNativeBuildInputs ? [], extraEnv ? {}, extraShellHook ? "" }:
+    with pkgs; mkShell (extraEnv // {
       nativeBuildInputs = [
         pkg-config
       ] ++ extraNativeBuildInputs;
@@ -27,9 +27,12 @@ in
 
       #Environment Variables
       LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
-    } // extraEnv // {
-      shellHook = shellHook;
-    };
+
+      shellHook = ''
+        echo -e "\nStarting RustRover DevShell:\nloading..."
+        exec /home/siglaz/.local/share/JetBrains/Toolbox/scripts/rustrover .
+      '' + extraShellHook;
+    });
 
   # Export useful items
   inherit rustToolchain;
