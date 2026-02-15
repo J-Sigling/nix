@@ -46,15 +46,6 @@
       "$browser" = "brave";
       "$launcher" = "wofi --show drun";
 
-      # JetBrains window rules - fix focus stealing and empty windows
-      windowrulev2 = [
-        # Fix focus-stealing popups
-        "stayfocused, class:^jetbrains-.*, floating:1, title:^(?!win\\d+$).*$"
-        # Ignore empty utility windows
-        "nofocus, class:^jetbrains-.*, floating:1, title:^win\\d+$"
-        # Prevent initial focus on empty windows
-        "noinitialfocus, class:^jetbrains-.*, floating:1, title:^$"
-      ];
 
       # Keybindings
       bind = [
