@@ -61,7 +61,7 @@
         # Application shortcuts
         "$mainMod, Q, exec, $terminal"
         "$mainMod, B, exec, $browser"
-        "$mainMod SHIFT, M, exec, spotify"
+        "$mainMod  S, exec, spotify"
         "$mainMod, D, exec, $launcher"
 
         # Window actions
@@ -91,12 +91,6 @@
         "$mainMod SHIFT, right, movewindow, r"
         "$mainMod SHIFT, up, movewindow, u"
         "$mainMod SHIFT, down, movewindow, d"
-
-        # Move windows (vim keys)
-        "$mainMod SHIFT, h, movewindow, l"
-        "$mainMod SHIFT, l, movewindow, r"
-        "$mainMod SHIFT, k, movewindow, u"
-        "$mainMod SHIFT, j, movewindow, d"
 
         # Switch workspaces
         "$mainMod, 1, workspace, 1"
