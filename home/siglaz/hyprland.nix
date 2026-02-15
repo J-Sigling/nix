@@ -12,6 +12,11 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
+      # Monitor configuration
+      monitor = [
+        ",preferred,auto,1"  # Auto-detect all monitors
+      ];
+
       # Input configuration
       input = {
         kb_layout = "us,se";
