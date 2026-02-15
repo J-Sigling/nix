@@ -104,6 +104,18 @@
         "$mainMod, 9, workspace, 9"
         "$mainMod, 0, workspace, 10"
 
+        # Switch workspaces (numpad)
+        "$mainMod, KP_End, workspace, 1"      # Numpad 1
+        "$mainMod, KP_Down, workspace, 2"     # Numpad 2
+        "$mainMod, KP_Next, workspace, 3"     # Numpad 3
+        "$mainMod, KP_Left, workspace, 4"     # Numpad 4
+        "$mainMod, KP_Begin, workspace, 5"    # Numpad 5
+        "$mainMod, KP_Right, workspace, 6"    # Numpad 6
+        "$mainMod, KP_Home, workspace, 7"     # Numpad 7
+        "$mainMod, KP_Up, workspace, 8"       # Numpad 8
+        "$mainMod, KP_Prior, workspace, 9"    # Numpad 9
+        "$mainMod, KP_Insert, workspace, 10"  # Numpad 0
+
         # Move window to workspace
         "$mainMod SHIFT, 1, movetoworkspace, 1"
         "$mainMod SHIFT, 2, movetoworkspace, 2"
@@ -115,6 +127,18 @@
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
+
+        # Move window to workspace (numpad)
+        "$mainMod SHIFT, KP_End, movetoworkspace, 1"
+        "$mainMod SHIFT, KP_Down, movetoworkspace, 2"
+        "$mainMod SHIFT, KP_Next, movetoworkspace, 3"
+        "$mainMod SHIFT, KP_Left, movetoworkspace, 4"
+        "$mainMod SHIFT, KP_Begin, movetoworkspace, 5"
+        "$mainMod SHIFT, KP_Right, movetoworkspace, 6"
+        "$mainMod SHIFT, KP_Home, movetoworkspace, 7"
+        "$mainMod SHIFT, KP_Up, movetoworkspace, 8"
+        "$mainMod SHIFT, KP_Prior, movetoworkspace, 9"
+        "$mainMod SHIFT, KP_Insert, movetoworkspace, 10"
 
         # Special workspace (scratchpad)
         "$mainMod, S, togglespecialworkspace, magic"
