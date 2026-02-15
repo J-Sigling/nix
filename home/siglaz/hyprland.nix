@@ -2,7 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    hyprshutdown
     wofi  # Wayland app launcher
   ];
 
@@ -68,7 +67,7 @@
         # Window actions
         "$mainMod, C, killactive"
         "$mainMod, M, exit"
-        "$mainMod, E, exec, hyprshutdown"
+        "$mainMod, O, exec, hyprctl dispatch exit"
         "$mainMod, V, togglefloating"
         "$mainMod, F, fullscreen, 0"
         "$mainMod, P, pseudo"
