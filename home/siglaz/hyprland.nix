@@ -26,7 +26,7 @@
         kb_layout = "us,se";
         kb_variant = "";
         kb_model = "";
-        kb_options = "";
+        kb_options = "grp:alt_space_toggle";
         kb_rules = "";
       };
 
@@ -61,7 +61,7 @@
         # Application shortcuts
         "$mainMod, Q, exec, $terminal"
         "$mainMod, B, exec, $browser"
-        "$mainMod, S, exec, spotify"
+        "$mainMod SHIFT, M, exec, spotify"
         "$mainMod, D, exec, $launcher"
 
         # Window actions
@@ -73,8 +73,6 @@
         "$mainMod, P, pseudo"
         "$mainMod, J, togglesplit"
 
-        # Switch keyboard layout
-        "$mainMod, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
 
         # Window focus navigation (arrow keys)
         "$mainMod, left, movefocus, l"
@@ -161,16 +159,14 @@
           size = 3;
           passes = 1;
         };
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
       };
 
       # Animations
       animations = {
         enabled = true;
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+        bezier = [
+          "myBezier, 0.05, 0.9, 0.1, 1.05"
+        ];
         animation = [
           "windows, 1, 7, myBezier"
           "windowsOut, 1, 7, default, popin 80%"
