@@ -10,6 +10,5 @@
     hunspellDicts.uk_UA
     jetbrains-toolbox
     steam-run
-    wofi  # Wayland app launcher
   ];
 }

@@ -1,6 +1,11 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    hyprshutdown
+    wofi  # Wayland app launcher
+  ];
+
   services.hyprpaper = {
     enable = true;
     settings = {
@@ -63,6 +68,7 @@
         # Window actions
         "$mainMod, C, killactive"
         "$mainMod, M, exit"
+        "$mainMod, E, exec, hyprshutdown"
         "$mainMod, V, togglefloating"
         "$mainMod, F, fullscreen, 0"
         "$mainMod, P, pseudo"
