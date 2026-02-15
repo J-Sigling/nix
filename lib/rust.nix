@@ -25,6 +25,8 @@ in
         udev
         openssl
       ] ++ extraBuildInputs;
+
+      trimmedExtraShellHook = lib.strings.trim extraShellHook;
     in
     mkShell (extraEnv // {
       #Environment Variables
@@ -34,8 +36,9 @@ in
 
       shellHook = ''
         echo -e "\nStarting RustRover DevShell:\nloading..."
+      '' + (if trimmedExtraShellHook != "" then trimmedExtraShellHook + " &\n" else "") + ''
         exec /home/siglaz/.local/share/JetBrains/Toolbox/scripts/rustrover .
-      '' + extraShellHook;
+      '';
     });
 
   # Export useful items
