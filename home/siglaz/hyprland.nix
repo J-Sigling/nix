@@ -61,7 +61,7 @@
         # Application shortcuts
         "$mainMod, Q, exec, $terminal"
         "$mainMod, B, exec, $browser"
-        "$mainMod  S, exec, spotify"
+        "$mainMod  S, exec, Spotify"
         "$mainMod, D, exec, $launcher"
 
         # Window actions
