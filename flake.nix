@@ -53,5 +53,9 @@
         #   description = "Python development environment";
         # };
       };
-    };
+
+    } // flake-utils.lib.eachDefaultSystem (system: {
+      # Development shells
+      devShells.default = (rustLib system).mkRustShell { };
+    });
 }
