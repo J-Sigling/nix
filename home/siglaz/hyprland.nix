@@ -14,7 +14,7 @@
     settings = {
       # Input configuration
       input = {
-        kb_layout = "se";
+        kb_layout = "us,se";
         kb_variant = "";
         kb_model = "";
         kb_options = "";
@@ -62,6 +62,9 @@
         "$mainMod, F, fullscreen, 0"
         "$mainMod, P, pseudo"
         "$mainMod, J, togglesplit"
+
+        # Switch keyboard layout
+        "$mainMod, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
 
         # Window focus navigation (arrow keys)
         "$mainMod, left, movefocus, l"
