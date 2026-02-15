@@ -111,105 +111,6 @@
         "$mainMod SHIFT, TAB, cyclenext, prev"
       ];
 
-      # Submap for viewing workspaces (mainMod + V, then number)
-      submap = {
-        view_workspace = [
-          "1, workspace, 1"
-          "1, submap, reset"
-          "2, workspace, 2"
-          "2, submap, reset"
-          "3, workspace, 3"
-          "3, submap, reset"
-          "4, workspace, 4"
-          "4, submap, reset"
-          "5, workspace, 5"
-          "5, submap, reset"
-          "6, workspace, 6"
-          "6, submap, reset"
-          "7, workspace, 7"
-          "7, submap, reset"
-          "8, workspace, 8"
-          "8, submap, reset"
-          "9, workspace, 9"
-          "9, submap, reset"
-          "0, workspace, 10"
-          "0, submap, reset"
-
-          # Numpad bindings
-          "KP_End, workspace, 1"
-          "KP_End, submap, reset"
-          "KP_Down, workspace, 2"
-          "KP_Down, submap, reset"
-          "KP_Next, workspace, 3"
-          "KP_Next, submap, reset"
-          "KP_Left, workspace, 4"
-          "KP_Left, submap, reset"
-          "KP_Begin, workspace, 5"
-          "KP_Begin, submap, reset"
-          "KP_Right, workspace, 6"
-          "KP_Right, submap, reset"
-          "KP_Home, workspace, 7"
-          "KP_Home, submap, reset"
-          "KP_Up, workspace, 8"
-          "KP_Up, submap, reset"
-          "KP_Prior, workspace, 9"
-          "KP_Prior, submap, reset"
-          "KP_Insert, workspace, 10"
-          "KP_Insert, submap, reset"
-
-          # Escape to cancel
-          "escape, submap, reset"
-        ];
-
-        move_workspace = [
-          "1, movetoworkspace, 1"
-          "1, submap, reset"
-          "2, movetoworkspace, 2"
-          "2, submap, reset"
-          "3, movetoworkspace, 3"
-          "3, submap, reset"
-          "4, movetoworkspace, 4"
-          "4, submap, reset"
-          "5, movetoworkspace, 5"
-          "5, submap, reset"
-          "6, movetoworkspace, 6"
-          "6, submap, reset"
-          "7, movetoworkspace, 7"
-          "7, submap, reset"
-          "8, movetoworkspace, 8"
-          "8, submap, reset"
-          "9, movetoworkspace, 9"
-          "9, submap, reset"
-          "0, movetoworkspace, 10"
-          "0, submap, reset"
-
-          # Numpad bindings
-          "KP_End, movetoworkspace, 1"
-          "KP_End, submap, reset"
-          "KP_Down, movetoworkspace, 2"
-          "KP_Down, submap, reset"
-          "KP_Next, movetoworkspace, 3"
-          "KP_Next, submap, reset"
-          "KP_Left, movetoworkspace, 4"
-          "KP_Left, submap, reset"
-          "KP_Begin, movetoworkspace, 5"
-          "KP_Begin, submap, reset"
-          "KP_Right, movetoworkspace, 6"
-          "KP_Right, submap, reset"
-          "KP_Home, movetoworkspace, 7"
-          "KP_Home, submap, reset"
-          "KP_Up, movetoworkspace, 8"
-          "KP_Up, submap, reset"
-          "KP_Prior, movetoworkspace, 9"
-          "KP_Prior, submap, reset"
-          "KP_Insert, movetoworkspace, 10"
-          "KP_Insert, submap, reset"
-
-          # Escape to cancel
-          "escape, submap, reset"
-        ];
-      };
-
       # Mouse bindings
       bindm = [
         "$mainMod, mouse:272, movewindow"    # Left click drag to move
@@ -264,5 +165,98 @@
         disable_hyprland_logo = true;
       };
     };
+
+    # Submap configurations (must use extraConfig)
+    extraConfig = ''
+      # Submap for viewing workspaces (SUPER + V, then number)
+      submap = view_workspace
+      bind = , 1, workspace, 1
+      bind = , 1, submap, reset
+      bind = , 2, workspace, 2
+      bind = , 2, submap, reset
+      bind = , 3, workspace, 3
+      bind = , 3, submap, reset
+      bind = , 4, workspace, 4
+      bind = , 4, submap, reset
+      bind = , 5, workspace, 5
+      bind = , 5, submap, reset
+      bind = , 6, workspace, 6
+      bind = , 6, submap, reset
+      bind = , 7, workspace, 7
+      bind = , 7, submap, reset
+      bind = , 8, workspace, 8
+      bind = , 8, submap, reset
+      bind = , 9, workspace, 9
+      bind = , 9, submap, reset
+      bind = , 0, workspace, 10
+      bind = , 0, submap, reset
+      bind = , KP_End, workspace, 1
+      bind = , KP_End, submap, reset
+      bind = , KP_Down, workspace, 2
+      bind = , KP_Down, submap, reset
+      bind = , KP_Next, workspace, 3
+      bind = , KP_Next, submap, reset
+      bind = , KP_Left, workspace, 4
+      bind = , KP_Left, submap, reset
+      bind = , KP_Begin, workspace, 5
+      bind = , KP_Begin, submap, reset
+      bind = , KP_Right, workspace, 6
+      bind = , KP_Right, submap, reset
+      bind = , KP_Home, workspace, 7
+      bind = , KP_Home, submap, reset
+      bind = , KP_Up, workspace, 8
+      bind = , KP_Up, submap, reset
+      bind = , KP_Prior, workspace, 9
+      bind = , KP_Prior, submap, reset
+      bind = , KP_Insert, workspace, 10
+      bind = , KP_Insert, submap, reset
+      bind = , escape, submap, reset
+      submap = reset
+
+      # Submap for moving windows to workspaces (SUPER + M, then number)
+      submap = move_workspace
+      bind = , 1, movetoworkspace, 1
+      bind = , 1, submap, reset
+      bind = , 2, movetoworkspace, 2
+      bind = , 2, submap, reset
+      bind = , 3, movetoworkspace, 3
+      bind = , 3, submap, reset
+      bind = , 4, movetoworkspace, 4
+      bind = , 4, submap, reset
+      bind = , 5, movetoworkspace, 5
+      bind = , 5, submap, reset
+      bind = , 6, movetoworkspace, 6
+      bind = , 6, submap, reset
+      bind = , 7, movetoworkspace, 7
+      bind = , 7, submap, reset
+      bind = , 8, movetoworkspace, 8
+      bind = , 8, submap, reset
+      bind = , 9, movetoworkspace, 9
+      bind = , 9, submap, reset
+      bind = , 0, movetoworkspace, 10
+      bind = , 0, submap, reset
+      bind = , KP_End, movetoworkspace, 1
+      bind = , KP_End, submap, reset
+      bind = , KP_Down, movetoworkspace, 2
+      bind = , KP_Down, submap, reset
+      bind = , KP_Next, movetoworkspace, 3
+      bind = , KP_Next, submap, reset
+      bind = , KP_Left, movetoworkspace, 4
+      bind = , KP_Left, submap, reset
+      bind = , KP_Begin, movetoworkspace, 5
+      bind = , KP_Begin, submap, reset
+      bind = , KP_Right, movetoworkspace, 6
+      bind = , KP_Right, submap, reset
+      bind = , KP_Home, movetoworkspace, 7
+      bind = , KP_Home, submap, reset
+      bind = , KP_Up, movetoworkspace, 8
+      bind = , KP_Up, submap, reset
+      bind = , KP_Prior, movetoworkspace, 9
+      bind = , KP_Prior, submap, reset
+      bind = , KP_Insert, movetoworkspace, 10
+      bind = , KP_Insert, submap, reset
+      bind = , escape, submap, reset
+      submap = reset
+    '';
   };
 }
