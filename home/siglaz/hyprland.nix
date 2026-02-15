@@ -41,7 +41,7 @@
       ];
 
       # Variables
-      "$mainMod" = "ALT";
+      "$mainMod" = "SUPER";
       "$terminal" = "kitty";
       "$browser" = "brave";
       "$launcher" = "wofi --show drun";
