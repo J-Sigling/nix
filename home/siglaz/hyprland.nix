@@ -66,9 +66,9 @@
 
         # Window actions
         "$mainMod, C, killactive"
-        "$mainMod, M, exit"
+        "$mainMod, E, exit"
         "$mainMod, O, exec, hyprctl dispatch exit"
-        "$mainMod, V, togglefloating"
+        "$mainMod, T, togglefloating"
         "$mainMod, F, fullscreen, 0"
         "$mainMod, P, pseudo"
         "$mainMod, J, togglesplit"
@@ -92,53 +92,11 @@
         "$mainMod SHIFT, up, movewindow, u"
         "$mainMod SHIFT, down, movewindow, d"
 
-        # Switch workspaces
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
+        # Enter workspace view mode (mainMod + V)
+        "$mainMod, V, submap, view_workspace"
 
-        # Switch workspaces (numpad)
-        "$mainMod, KP_End, workspace, 1"      # Numpad 1
-        "$mainMod, KP_Down, workspace, 2"     # Numpad 2
-        "$mainMod, KP_Next, workspace, 3"     # Numpad 3
-        "$mainMod, KP_Left, workspace, 4"     # Numpad 4
-        "$mainMod, KP_Begin, workspace, 5"    # Numpad 5
-        "$mainMod, KP_Right, workspace, 6"    # Numpad 6
-        "$mainMod, KP_Home, workspace, 7"     # Numpad 7
-        "$mainMod, KP_Up, workspace, 8"       # Numpad 8
-        "$mainMod, KP_Prior, workspace, 9"    # Numpad 9
-        "$mainMod, KP_Insert, workspace, 10"  # Numpad 0
-
-        # Move window to workspace
-        "$mainMod SHIFT, 1, movetoworkspace, 1"
-        "$mainMod SHIFT, 2, movetoworkspace, 2"
-        "$mainMod SHIFT, 3, movetoworkspace, 3"
-        "$mainMod SHIFT, 4, movetoworkspace, 4"
-        "$mainMod SHIFT, 5, movetoworkspace, 5"
-        "$mainMod SHIFT, 6, movetoworkspace, 6"
-        "$mainMod SHIFT, 7, movetoworkspace, 7"
-        "$mainMod SHIFT, 8, movetoworkspace, 8"
-        "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 10"
-
-        # Move window to workspace (numpad)
-        "$mainMod SHIFT, KP_End, movetoworkspace, 1"
-        "$mainMod SHIFT, KP_Down, movetoworkspace, 2"
-        "$mainMod SHIFT, KP_Next, movetoworkspace, 3"
-        "$mainMod SHIFT, KP_Left, movetoworkspace, 4"
-        "$mainMod SHIFT, KP_Begin, movetoworkspace, 5"
-        "$mainMod SHIFT, KP_Right, movetoworkspace, 6"
-        "$mainMod SHIFT, KP_Home, movetoworkspace, 7"
-        "$mainMod SHIFT, KP_Up, movetoworkspace, 8"
-        "$mainMod SHIFT, KP_Prior, movetoworkspace, 9"
-        "$mainMod SHIFT, KP_Insert, movetoworkspace, 10"
+        # Enter workspace move mode (mainMod + M)
+        "$mainMod, M, submap, move_workspace"
 
         # Special workspace (scratchpad)
         "$mainMod, S, togglespecialworkspace, magic"
@@ -152,6 +110,105 @@
         "$mainMod, TAB, cyclenext"
         "$mainMod SHIFT, TAB, cyclenext, prev"
       ];
+
+      # Submap for viewing workspaces (mainMod + V, then number)
+      submap = {
+        view_workspace = [
+          "1, workspace, 1"
+          "1, submap, reset"
+          "2, workspace, 2"
+          "2, submap, reset"
+          "3, workspace, 3"
+          "3, submap, reset"
+          "4, workspace, 4"
+          "4, submap, reset"
+          "5, workspace, 5"
+          "5, submap, reset"
+          "6, workspace, 6"
+          "6, submap, reset"
+          "7, workspace, 7"
+          "7, submap, reset"
+          "8, workspace, 8"
+          "8, submap, reset"
+          "9, workspace, 9"
+          "9, submap, reset"
+          "0, workspace, 10"
+          "0, submap, reset"
+
+          # Numpad bindings
+          "KP_End, workspace, 1"
+          "KP_End, submap, reset"
+          "KP_Down, workspace, 2"
+          "KP_Down, submap, reset"
+          "KP_Next, workspace, 3"
+          "KP_Next, submap, reset"
+          "KP_Left, workspace, 4"
+          "KP_Left, submap, reset"
+          "KP_Begin, workspace, 5"
+          "KP_Begin, submap, reset"
+          "KP_Right, workspace, 6"
+          "KP_Right, submap, reset"
+          "KP_Home, workspace, 7"
+          "KP_Home, submap, reset"
+          "KP_Up, workspace, 8"
+          "KP_Up, submap, reset"
+          "KP_Prior, workspace, 9"
+          "KP_Prior, submap, reset"
+          "KP_Insert, workspace, 10"
+          "KP_Insert, submap, reset"
+
+          # Escape to cancel
+          "escape, submap, reset"
+        ];
+
+        move_workspace = [
+          "1, movetoworkspace, 1"
+          "1, submap, reset"
+          "2, movetoworkspace, 2"
+          "2, submap, reset"
+          "3, movetoworkspace, 3"
+          "3, submap, reset"
+          "4, movetoworkspace, 4"
+          "4, submap, reset"
+          "5, movetoworkspace, 5"
+          "5, submap, reset"
+          "6, movetoworkspace, 6"
+          "6, submap, reset"
+          "7, movetoworkspace, 7"
+          "7, submap, reset"
+          "8, movetoworkspace, 8"
+          "8, submap, reset"
+          "9, movetoworkspace, 9"
+          "9, submap, reset"
+          "0, movetoworkspace, 10"
+          "0, submap, reset"
+
+          # Numpad bindings
+          "KP_End, movetoworkspace, 1"
+          "KP_End, submap, reset"
+          "KP_Down, movetoworkspace, 2"
+          "KP_Down, submap, reset"
+          "KP_Next, movetoworkspace, 3"
+          "KP_Next, submap, reset"
+          "KP_Left, movetoworkspace, 4"
+          "KP_Left, submap, reset"
+          "KP_Begin, movetoworkspace, 5"
+          "KP_Begin, submap, reset"
+          "KP_Right, movetoworkspace, 6"
+          "KP_Right, submap, reset"
+          "KP_Home, movetoworkspace, 7"
+          "KP_Home, submap, reset"
+          "KP_Up, movetoworkspace, 8"
+          "KP_Up, submap, reset"
+          "KP_Prior, movetoworkspace, 9"
+          "KP_Prior, submap, reset"
+          "KP_Insert, movetoworkspace, 10"
+          "KP_Insert, submap, reset"
+
+          # Escape to cancel
+          "escape, submap, reset"
+        ];
+      };
 
       # Mouse bindings
       bindm = [
