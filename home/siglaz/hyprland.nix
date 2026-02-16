@@ -38,6 +38,7 @@
       # Autostart
       exec-once = [
         "hyprpaper"
+        "nm-applet --indicator"
       ];
 
       # Variables

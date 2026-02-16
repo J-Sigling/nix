@@ -48,6 +48,7 @@
     fzf
     zoxide
     jq
+    networkmanagerapplet
   ];
 
   # nix-ld for dynamic linking
