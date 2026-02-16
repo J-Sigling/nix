@@ -21,6 +21,7 @@ in
 
       allBuildInputs = [
         rustToolchain
+        rustup
         bash
         udev
         openssl
