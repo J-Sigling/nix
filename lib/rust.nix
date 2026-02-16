@@ -8,6 +8,7 @@ let
   };
   rustToolchain = pkgs.rust-bin.stable.latest.default.override {
     extensions = [ "rust-src" ];
+    targets = [ "riscv32imac-unknown-none-elf" ];
   };
 in
 {
@@ -21,7 +22,6 @@ in
 
       allBuildInputs = [
         rustToolchain
-        rustup
         bash
         udev
         openssl
