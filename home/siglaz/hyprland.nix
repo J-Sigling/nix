@@ -3,6 +3,12 @@
 {
   home.packages = with pkgs; [
     wofi  # Wayland app launcher
+    waybar  # Status bar
+    mako  # Notification daemon
+    grim  # Screenshot tool
+    slurp  # Screen area selector
+    swaylock-effects  # Lock screen
+    wl-clipboard  # Clipboard utilities
   ];
 
   services.hyprpaper = {
@@ -39,6 +45,8 @@
       exec-once = [
         "hyprpaper"
         "nm-applet --indicator"
+        "waybar"
+        "mako"
       ];
 
       # Variables
@@ -55,6 +63,14 @@
         "$mainMod, B, exec, $browser"
         "$mainMod, S, exec, spotify"
         "$mainMod, D, exec, $launcher"
+
+        # Screenshot shortcuts
+        ", PRINT, exec, grim - | wl-copy"  # Full screenshot to clipboard
+        "$mainMod, PRINT, exec, grim -g \"$(slurp)\" - | wl-copy"  # Area screenshot
+        "$mainMod SHIFT, PRINT, exec, grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png"  # Save full screenshot
+
+        # Lock screen
+        "$mainMod, L, exec, swaylock -f"
 
         # Window actions
         "$mainMod, C, killactive"
@@ -107,35 +123,64 @@
       general = {
         gaps_in = 5;
         gaps_out = 10;
-        border_size = 2;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        border_size = 3;
+        "col.active_border" = "rgba(ff0000ee) rgba(880000ee) 45deg";  # Red gradient
+        "col.inactive_border" = "rgba(1a1a1aaa)";  # Dark gray/black
         layout = "dwindle";
+        allow_tearing = false;
       };
 
       # Decoration
       decoration = {
-        rounding = 8;
+        rounding = 10;
+
         blur = {
           enabled = true;
-          size = 3;
-          passes = 1;
+          size = 8;
+          passes = 3;
+          new_optimizations = true;
+          xray = false;
+          ignore_opacity = false;
         };
+
+        # Shadow configuration
+        drop_shadow = true;
+        shadow_range = 30;
+        shadow_render_power = 3;
+        shadow_offset = "0 0";
+        "col.shadow" = "rgba(ff000055)";  # Red shadow for active windows
+        "col.shadow_inactive" = "rgba(00000055)";
+
+        # Opacity
+        active_opacity = 1.0;
+        inactive_opacity = 0.92;
+        fullscreen_opacity = 1.0;
+
+        # Dimming
+        dim_inactive = true;
+        dim_strength = 0.15;
       };
 
       # Animations
       animations = {
         enabled = true;
         bezier = [
-          "myBezier, 0.05, 0.9, 0.1, 1.05"
+          "wind, 0.05, 0.9, 0.1, 1.05"
+          "winIn, 0.1, 1.1, 0.1, 1.1"
+          "winOut, 0.3, -0.3, 0, 1"
+          "liner, 1, 1, 1, 1"
+          "linear, 0.0, 0.0, 1.0, 1.0"
         ];
         animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
+          "windows, 1, 6, wind, slide"
+          "windowsIn, 1, 6, winIn, slide"
+          "windowsOut, 1, 5, winOut, slide"
+          "windowsMove, 1, 5, wind, slide"
           "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
+          "borderangle, 1, 100, linear, loop"  # Smooth rotating border
+          "fade, 1, 8, default"
+          "workspaces, 1, 5, wind, slidevert"
+          "specialWorkspace, 1, 6, default, slidefadevert"
         ];
       };
 
@@ -149,7 +194,34 @@
       misc = {
         force_default_wallpaper = 0;
         disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+        mouse_move_enables_dpms = true;
+        vrr = 1;
+        animate_manual_resizes = true;
+        animate_mouse_windowdragging = true;
       };
+
+      # Window rules for better aesthetics
+      windowrulev2 = [
+        # Float specific windows
+        "float, class:^(pavucontrol)$"
+        "float, class:^(nm-connection-editor)$"
+        "float, class:^(org.kde.polkit-kde-authentication-agent-1)$"
+
+        # Opacity rules for terminal
+        "opacity 0.9 0.9, class:^(kitty)$"
+        "opacity 0.9 0.9, class:^(Alacritty)$"
+
+        # Workspace assignments
+        "workspace 1, class:^(Code)$"
+        "workspace 1, class:^(jetbrains-*)$"
+        "workspace 3, class:^(brave-browser)$"
+        "workspace 3, class:^(firefox)$"
+        "workspace 4, class:^(Spotify)$"
+
+        # Remove shadows from specific windows
+        "noshadow, floating:0"
+      ];
     };
 
     # Submap configurations (must use extraConfig)
