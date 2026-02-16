@@ -51,16 +51,16 @@
       # Keybindings
       bind = [
         # Application shortcuts
-        "$mainMod, Q, exec, $terminal"
+        "$mainMod, K, exec, $terminal"
         "$mainMod, B, exec, $browser"
-        "$mainMod, S, exec, Spotify"
+        "$mainMod, S, exec, spotify"
         "$mainMod, D, exec, $launcher"
 
         # Window actions
         "$mainMod, C, killactive"
         "$mainMod, E, exit"
         "$mainMod, O, exec, hyprctl dispatch exit"
-        "$mainMod, T, togglefloating"
+        "$mainMod, Q, togglefloating"
         "$mainMod, F, fullscreen, 0"
         "$mainMod, P, pseudo"
         "$mainMod, J, togglesplit"
@@ -71,12 +71,6 @@
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
-
-        # Window focus navigation (vim keys)
-        "$mainMod, h, movefocus, l"
-        "$mainMod, l, movefocus, r"
-        "$mainMod, k, movefocus, u"
-        "$mainMod, j, movefocus, d"
 
         # Move windows (arrow keys)
         "$mainMod SHIFT, left, movewindow, l"
