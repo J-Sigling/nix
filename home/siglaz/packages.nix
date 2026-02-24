@@ -9,6 +9,7 @@
     hunspell
     hunspellDicts.uk_UA
     jetbrains-toolbox
-    steam-run
+    networkmanagerapplet
+#    waybar
   ];
 }

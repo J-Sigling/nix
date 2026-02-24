@@ -37,8 +37,10 @@
 
       # Autostart
       exec-once = [
+#        "waybar"
         "hyprpaper"
         "nm-applet --indicator"
+        "blueman-applet"
       ];
 
       # Variables
@@ -55,6 +57,8 @@
         "$mainMod, B, exec, $browser"
         "$mainMod, S, exec, spotify"
         "$mainMod, D, exec, $launcher"
+        "$mainMod, U, exec, blueman-manager"
+
 
         # Window actions
         "$mainMod, C, killactive"
@@ -64,13 +68,13 @@
         "$mainMod, F, fullscreen, 0"
         "$mainMod, P, pseudo"
         "$mainMod, J, togglesplit"
-
+        "$mainMod, J, togglesplit"
 
         # Window focus navigation (arrow keys)
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
+#        "$mainMod, left, movefocus, l"
+#        "$mainMod, right, movefocus, r"
+#        "$mainMod, up, movefocus, u"
+#        "$mainMod, down, movefocus, d"
 
         # Move windows (arrow keys)
         "$mainMod SHIFT, left, movewindow, l"
@@ -85,12 +89,12 @@
         "$mainMod, M, submap, move_workspace"
 
         # Special workspace (scratchpad)
-        "$mainMod, S, togglespecialworkspace, magic"
+#        "$mainMod, S, togglespecialworkspace, magic"
         "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
         # Scroll through workspaces
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
+        "$mainMod, right, workspace, e+1"
+        "$mainMod, left, workspace, e-1"
 
         # Cycle through windows
         "$mainMod, TAB, cyclenext"

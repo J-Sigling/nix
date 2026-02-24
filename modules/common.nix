@@ -36,6 +36,10 @@
     pulse.enable = true;
   };
 
+  #Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   # Printing
   services.printing.enable = true;
 
@@ -48,7 +52,6 @@
     fzf
     zoxide
     jq
-    networkmanagerapplet
   ];
 
   # nix-ld for dynamic linking

@@ -15,4 +15,10 @@
     enable = true;
     xwayland.enable = true;
   };
+  
+  #Networking applet
+  programs.nm-applet.enable = true;
+  
+  #Bluetooth Program
+  services.blueman.enable = true;
 }
