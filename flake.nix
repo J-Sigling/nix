@@ -22,16 +22,23 @@
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { hostname = "nixos"; };
           modules = [
-            ./hosts/nixos/configuration.nix
+            ./hosts/nixos/hardware-configuration.nix
+            ./hosts/configuration.nix
             home-manager.nixosModules.home-manager
           ];
         };
-        # Add more machines here:
-        # another-machine = nixpkgs.lib.nixosSystem {
-        #   system = "x86_64-linux";
-        #   modules = [ ./hosts/another-machine/configuration.nix ];
-        # };
+
+        snake = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { hostname = "snake"; };
+          modules = [
+            ./hosts/snake/hardware-configuration.nix
+            ./hosts/configuration.nix
+            home-manager.nixosModules.home-manager
+          ];
+        };
       };
 
       # Expose reusable library functions

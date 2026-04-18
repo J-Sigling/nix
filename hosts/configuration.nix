@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, hostname, ... }:
 
 {
   imports = [
@@ -13,7 +13,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Hostname
-  networking.hostName = "nixos";
+  networking.hostName = hostname;
 
   # Home Manager
   home-manager.useGlobalPkgs = true;
