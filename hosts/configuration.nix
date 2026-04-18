@@ -2,10 +2,9 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ../../modules/common.nix
-    ../../modules/desktop.nix
-    ../../modules/users/siglaz.nix
+    ../modules/common.nix
+    ../modules/desktop.nix
+    ../modules/users/siglaz.nix
   ];
 
   # Bootloader
