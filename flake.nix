@@ -36,6 +36,7 @@
           modules = [
             ./hosts/snake/hardware-configuration.nix
             ./hosts/configuration.nix
+            ./hosts/snake/host.nix
             home-manager.nixosModules.home-manager
           ];
         };
