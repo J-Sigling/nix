@@ -18,9 +18,9 @@
   home-manager.useGlobalPkgs = true;
   home-manager.users.siglaz = { pkgs, config, ... }: {
     imports = [
-      ../../home/siglaz/common.nix
-      ../../home/siglaz/packages.nix
-      ../../home/siglaz/hyprland.nix
+      ../home/siglaz/common.nix
+      ../home/siglaz/packages.nix
+      ../home/siglaz/hyprland.nix
     ];
   };
 
