@@ -101,6 +101,14 @@
         "$mainMod SHIFT, TAB, cyclenext, prev"
       ];
 
+      # Media key bindings (bindl = binds that work even when locked)
+      bindl = [
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+      ];
+
       # Mouse bindings
       bindm = [
         "$mainMod, mouse:272, movewindow"    # Left click drag to move
