@@ -10,6 +10,8 @@
     hunspellDicts.uk_UA
     jetbrains-toolbox
     networkmanagerapplet
+    claude-code
+    unrar
 #    waybar
   ];
 }
