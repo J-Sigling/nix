@@ -16,6 +16,9 @@
       rustLib = import ./lib/rust.nix {
         inherit nixpkgs flake-utils rust-overlay;
       };
+      blenderLib = import ./lib/blender.nix {
+        inherit nixpkgs flake-utils;
+      };
     in
     {
       # NixOS configurations
@@ -45,8 +48,7 @@
       # Expose reusable library functions
       lib = flake-utils.lib.eachDefaultSystem (system: {
         rust = rustLib system;
-        # Add more libraries here:
-        # python = pythonLib system;
+        blender = blenderLib system;
       });
 
       # Templates for new projects
@@ -55,11 +57,10 @@
           path = ./templates/rust;
           description = "Rust project template using the rust library";
         };
-        # Add more templates here:
-        # python = {
-        #   path = ./templates/python;
-        #   description = "Python development environment";
-        # };
+        blender = {
+          path = ./templates/blender;
+          description = "Blender development environment";
+        };
       };
 
     } // flake-utils.lib.eachDefaultSystem (system: {
