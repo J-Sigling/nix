@@ -52,6 +52,7 @@
     fzf
     zoxide
     jq
+    brightnessctl
   ];
 
   # nix-ld for dynamic linking

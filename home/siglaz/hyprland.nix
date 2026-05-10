@@ -68,13 +68,12 @@
         "$mainMod, F, fullscreen, 0"
         "$mainMod, P, pseudo"
         "$mainMod, J, togglesplit"
-        "$mainMod, J, togglesplit"
 
-        # Window focus navigation (arrow keys)
-#        "$mainMod, left, movefocus, l"
-#        "$mainMod, right, movefocus, r"
-#        "$mainMod, up, movefocus, u"
-#        "$mainMod, down, movefocus, d"
+        # Window focus navigation (ALT + arrow keys)
+        "ALT, left, movefocus, l"
+        "ALT, right, movefocus, r"
+        "ALT, up, movefocus, u"
+        "ALT, down, movefocus, d"
 
         # Move windows (arrow keys)
         "$mainMod SHIFT, left, movewindow, l"
@@ -107,12 +106,22 @@
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+        ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
       ];
 
       # Mouse bindings
       bindm = [
         "$mainMod, mouse:272, movewindow"    # Left click drag to move
         "$mainMod, mouse:273, resizewindow"  # Right click drag to resize
+      ];
+
+      # Resize windows with SUPER + CTRL + arrow keys
+      binde = [
+        "$mainMod CTRL, right, resizeactive, 30 0"
+        "$mainMod CTRL, left, resizeactive, -30 0"
+        "$mainMod CTRL, up, resizeactive, 0 -30"
+        "$mainMod CTRL, down, resizeactive, 0 30"
       ];
 
       # General settings
