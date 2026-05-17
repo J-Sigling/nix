@@ -9,6 +9,7 @@
       "wheel"
       "tty"
       "dialout"
+      "docker"
     ];
   };
 }

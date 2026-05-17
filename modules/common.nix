@@ -40,6 +40,9 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
+  # Docker
+  virtualisation.docker.enable = true;
+
   # Printing
   services.printing.enable = true;
 
