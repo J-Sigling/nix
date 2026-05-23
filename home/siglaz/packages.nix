@@ -12,6 +12,7 @@
     networkmanagerapplet
     claude-code
     unrar
+    unzip
 #    waybar
   ];
 }
