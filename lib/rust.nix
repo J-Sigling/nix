@@ -37,9 +37,8 @@ in
 
       shellHook = ''
         echo -e "\nStarting RustRover DevShell:\nloading..."
-      '' + (if trimmedExtraShellHook != "" then trimmedExtraShellHook + " &\n" else "") + ''
-        exec bash /home/siglaz/.local/share/JetBrains/Toolbox/scripts/rustrover .
-      '';
+        exec bash /home/siglaz/.local/share/JetBrains/Toolbox/scripts/rustrover . &
+      '' + (if trimmedExtraShellHook != "" then "\n" + trimmedExtraShellHook else "");
     });
 
   # Export useful items
