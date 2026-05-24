@@ -6,7 +6,7 @@ let
     config.allowUnfree = true;
     inherit system overlays;
   };
-  rustToolchain = pkgs.rust-bin.stable.latest.default.override {
+  rustToolchain = pkgs.rust-bin.nightly.latest.default.override {
     extensions = [ "rust-src" ];
     targets = [ "riscv32imac-unknown-none-elf" ];
   };
