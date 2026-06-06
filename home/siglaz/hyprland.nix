@@ -69,11 +69,11 @@
         "$mainMod, P, pseudo"
         "$mainMod, J, togglesplit"
 
-        # Window focus navigation (ALT + arrow keys)
-        "ALT, left, movefocus, l"
-        "ALT, right, movefocus, r"
-        "ALT, up, movefocus, u"
-        "ALT, down, movefocus, d"
+        # Window focus navigation (SUPER + SHIFT + arrow keys)
+        "$mainMod SHIFT, left, movefocus, l"
+        "$mainMod SHIFT, right, movefocus, r"
+        "$mainMod SHIFT, up, movefocus, u"
+        "$mainMod SHIFT, down, movefocus, d"
 
         # Move windows (arrow keys)
         "$mainMod SHIFT, left, movewindow, l"
