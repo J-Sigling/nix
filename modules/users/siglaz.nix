@@ -10,6 +10,7 @@
       "tty"
       "dialout"
       "docker"
+      "video"
     ];
   };
 }
