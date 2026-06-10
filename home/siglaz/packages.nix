@@ -13,6 +13,7 @@
     claude-code
     unrar
     unzip
+    cameractrls
 #    waybar
   ];
 }
