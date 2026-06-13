@@ -4,6 +4,7 @@
   imports = [
     ../modules/common.nix
     ../modules/desktop.nix
+    ../modules/greetd.nix
     ../modules/users/siglaz.nix
   ];
 
