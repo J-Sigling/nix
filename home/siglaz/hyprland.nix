@@ -37,7 +37,7 @@
 
       # Autostart
       exec-once = [
-#        "waybar"
+        "waybar"
         "hyprpaper"
         "nm-applet --indicator"
         "blueman-applet"
