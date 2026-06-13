@@ -21,6 +21,7 @@
       ../home/siglaz/common.nix
       ../home/siglaz/packages.nix
       ../home/siglaz/hyprland.nix
+      ../home/siglaz/waybar.nix
     ];
   };
 

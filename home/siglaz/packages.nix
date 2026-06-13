@@ -14,6 +14,5 @@
     unrar
     unzip
     cameractrls-gtk4
-#    waybar
   ];
 }
