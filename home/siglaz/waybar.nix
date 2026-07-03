@@ -6,10 +6,19 @@
         settings = {
             mainBar = {
                 layer = "top";
-                position = "top";
-                modules-right = ["tray" "clock"];
+                position = "bottom";
+                modules-right = ["tray" "pulseaudio" "clock"];
                 tray = {
                     spacing = 10;
+                };
+                pulseaudio = {
+                    format = "{volume}% {icon}";
+                    format-muted = "󰝟 {volume}%";
+                    format-icons = {
+                        default = ["" "" ""];
+                    };
+                    on-click = "pavucontrol";
+                    tooltip-format = "{desc}, {volume}%";
                 };
             };
         };
