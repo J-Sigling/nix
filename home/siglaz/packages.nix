@@ -10,6 +10,7 @@
     hunspellDicts.uk_UA
     jetbrains-toolbox
     networkmanagerapplet
+    pavucontrol
     claude-code
     unrar
     unzip
