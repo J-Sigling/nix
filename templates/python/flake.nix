@@ -16,7 +16,7 @@
       {
         devShell = pythonLib.mkPythonShell {
           # Add your project-specific customizations here
-          # pythonVersion = pkgs.python311;  # Override Python version if needed
+          # pythonVersion = pkgs.python313;  # Override Python version (default: python314)
           extraEnv = {
             # Add environment variables here
             # EXAMPLE_VAR = "value";
@@ -31,7 +31,7 @@
           ];
           extraShellHook = ''
             # Add extra shell hook commands here
-            # uv venv --python ${pkgs.python312}/bin/python
+            # uv venv --python ${pkgs.python314}/bin/python
           '';
         };
       }

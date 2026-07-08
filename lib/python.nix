@@ -9,7 +9,7 @@ in
 {
   # Function to create a Python dev shell with uv and ruff
   mkPythonShell = {
-    pythonVersion ? pkgs.python312,
+    pythonVersion ? pkgs.python314,
     extraBuildInputs ? [],
     extraNativeBuildInputs ? [],
     extraEnv ? {},
@@ -35,10 +35,8 @@ in
       nativeBuildInputs = allNativeBuildInputs;
 
       shellHook = ''
-        echo "Python development environment activated"
-        echo "Python: $(python --version)"
-        echo "uv: $(uv --version)"
-        echo "ruff: $(ruff --version)"
+        echo -e "\nStarting PyCharm DevShell:\nloading..."
+        exec bash /home/siglaz/.local/share/JetBrains/Toolbox/scripts/pycharm . &
       '' + (if trimmedExtraShellHook != "" then "\n" + trimmedExtraShellHook else "");
     });
 
