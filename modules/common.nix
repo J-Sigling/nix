@@ -4,6 +4,9 @@
   # Nix settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "docker-28.5.2"
+  ];
 
   # Networking
   networking.networkmanager.enable = true;
