@@ -19,6 +19,9 @@
       blenderLib = import ./lib/blender.nix {
         inherit nixpkgs flake-utils;
       };
+      pythonLib = import ./lib/python.nix {
+        inherit nixpkgs flake-utils;
+      };
     in
     {
       # NixOS configurations
@@ -49,6 +52,7 @@
       lib = flake-utils.lib.eachDefaultSystem (system: {
         rust = rustLib system;
         blender = blenderLib system;
+        python = pythonLib system;
       });
 
       # Templates for new projects
@@ -60,6 +64,10 @@
         blender = {
           path = ./templates/blender;
           description = "Blender development environment";
+        };
+        python = {
+          path = ./templates/python;
+          description = "Python project template with uv and ruff";
         };
       };
 
