@@ -25,6 +25,7 @@ in
         pythonVersion
         uv
         ruff
+        pyrefly
       ] ++ extraBuildInputs;
 
       trimmedExtraShellHook = lib.strings.trim extraShellHook;
