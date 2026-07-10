@@ -24,8 +24,6 @@ in
       allBuildInputs = [
         pythonVersion
         uv
-        ruff
-        pyrefly
       ] ++ extraBuildInputs;
 
       trimmedExtraShellHook = lib.strings.trim extraShellHook;
