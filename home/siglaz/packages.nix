@@ -12,6 +12,7 @@
     networkmanagerapplet
     pavucontrol
     claude-code
+    opencode
     unrar
     unzip
     cameractrls-gtk4
