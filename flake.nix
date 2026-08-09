@@ -69,6 +69,10 @@
           path = ./templates/python;
           description = "Python project template with uv and ruff";
         };
+        dioxus = {
+          path = ./templates/skills/dioxus;
+          description = "Dioxus 0.7 OpenCode skill";
+        };
       };
 
     } // flake-utils.lib.eachDefaultSystem (system: {
