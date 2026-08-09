@@ -13,7 +13,13 @@ let
 in
 {
   # Function to create a Rust dev shell with additional packages
-  mkRustShell = { extraBuildInputs ? [], extraNativeBuildInputs ? [], extraEnv ? {}, extraShellHook ? "" }:
+  mkRustShell = {
+    ide ? "rustrover",
+    extraBuildInputs ? [],
+    extraNativeBuildInputs ? [],
+    extraEnv ? {},
+    extraShellHook ? ""
+  }:
     with pkgs;
     let
       allNativeBuildInputs = [
@@ -28,6 +34,19 @@ in
       ] ++ extraBuildInputs;
 
       trimmedExtraShellHook = lib.strings.trim extraShellHook;
+
+      # Available IDEs that the shell hook can launch
+      ides = {
+        rustrover = {
+          name = "RustRover";
+          script = "/home/siglaz/.local/share/JetBrains/Toolbox/scripts/rustrover";
+        };
+        pycharm = {
+          name = "PyCharm";
+          script = "/home/siglaz/.local/share/JetBrains/Toolbox/scripts/pycharm";
+        };
+      };
+      selectedIde = ides.${ide} or (throw "Unknown ide '${ide}', expected one of: ${lib.concatStringsSep ", " (builtins.attrNames ides)}");
     in
     mkShell (extraEnv // {
       #Environment Variables
@@ -36,8 +55,8 @@ in
       buildInputs = allBuildInputs;
 
       shellHook = ''
-        echo -e "\nStarting RustRover DevShell:\nloading..."
-        exec bash /home/siglaz/.local/share/JetBrains/Toolbox/scripts/rustrover . &
+        echo -e "\nStarting ${selectedIde.name} DevShell:\nloading..."
+        exec bash ${selectedIde.script} . &
       '' + (if trimmedExtraShellHook != "" then "\n" + trimmedExtraShellHook else "");
     });
 

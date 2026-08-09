@@ -16,6 +16,7 @@
       in
       {
         devShell = rustLib.mkRustShell {
+          # ide = "pycharm";  # Choose IDE: "rustrover" (default) or "pycharm"
           # Add your project-specific customizations here
           extraEnv = {
             # Add environment variables here
