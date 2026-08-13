@@ -42,7 +42,7 @@
       ];
 
       # Always open these apps on workspace 1
-      windowrulev2 = map (app: "workspace 1 silent, nofocus, initialTitle:(${app})") [
+      windowrulev2 = map (app: "workspace 1 silent, initialTitle:(${app})") [
         "scrooge"
       ];
 
