@@ -41,6 +41,11 @@
         "blueman-applet"
       ];
 
+      # Always open these apps on workspace 1
+      windowrulev2 = map (app: "workspace 1, class:^(${app})$") [
+        "scrooge"
+      ];
+
       # Variables
       "$mainMod" = "SUPER";
       "$terminal" = "kitty";
