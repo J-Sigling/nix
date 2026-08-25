@@ -27,24 +27,11 @@
         reboot = [ "systemctl" "reboot" ];
         poweroff = [ "systemctl" "poweroff" ];
       };
-      # Skip user/session selection and use the last used ones
-      skip_selection = true;
     };
   };
 
-  # Seed regreet's "last session" cache on every boot so Hyprland is always used.
-  # ReGreet falls back to the user's login shell when no session and no cached
-  # entry exist (it ignores /etc/greetd/environments).
-  systemd.tmpfiles.settings."10-regreet-seed" = {
-    "/var/lib/regreet/state.toml".W = {
-      user = "greeter";
-      group = "greeter";
-      mode = "0644";
-      argument = ''
-        last_user = "siglaz"
-        [user_to_last_sess]
-        siglaz = "Hyprland"
-      '';
-    };
-  };
+  # Environment settings for Hyprland
+  environment.etc."greetd/environments".text = ''
+    Hyprland
+  '';
 }
