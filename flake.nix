@@ -9,10 +9,9 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     rust-overlay.url = "github:oxalica/rust-overlay";
-    opencode.url = "github:anomalyco/opencode/v1.18.23";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, rust-overlay, opencode }:
+  outputs = { self, nixpkgs, home-manager, flake-utils, rust-overlay }:
     let
       rustLib = import ./lib/rust.nix {
         inherit nixpkgs flake-utils rust-overlay;
@@ -22,11 +21,6 @@
       };
       pythonLib = import ./lib/python.nix {
         inherit nixpkgs flake-utils;
-      };
-      # Applies an overlay so home-manager's `pkgs.opencode` resolves to the
-      # flake-provided (latest) version instead of the stale nixpkgs one.
-      applyOverlays = overlay: { ... }: {
-        nixpkgs.overlays = [ overlay ];
       };
     in
     {
@@ -39,7 +33,6 @@
             ./hosts/nixos/hardware-configuration.nix
             ./hosts/configuration.nix
             home-manager.nixosModules.home-manager
-            (applyOverlays opencode.overlays.default)
           ];
         };
 
@@ -51,7 +44,6 @@
             ./hosts/configuration.nix
             ./hosts/snake/host.nix
             home-manager.nixosModules.home-manager
-            (applyOverlays opencode.overlays.default)
           ];
         };
       };
