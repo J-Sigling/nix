@@ -1,4 +1,4 @@
-{ config, pkgs, hostname, ... }:
+{ config, pkgs, hostname, pkgsUnstable, ... }:
 
 {
   imports = [
@@ -17,6 +17,7 @@
 
   # Home Manager
   home-manager.useGlobalPkgs = true;
+  home-manager.extraSpecialArgs = { inherit pkgsUnstable; };
   home-manager.users.siglaz = { pkgs, config, ... }: {
     imports = [
       ../home/siglaz/common.nix

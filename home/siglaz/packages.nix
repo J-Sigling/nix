@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgsUnstable, ... }:
 
 {
   home.packages = with pkgs; [
@@ -12,9 +12,11 @@
     networkmanagerapplet
     pavucontrol
     claude-code
-    opencode
     unrar
     unzip
     cameractrls-gtk4
-  ];
+  ]
+  ++ (with pkgsUnstable; [
+    opencode
+  ]);
 }
