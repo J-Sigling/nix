@@ -33,6 +33,33 @@ in
         openssl
       ] ++ extraBuildInputs;
 
+      # X11/GUI libraries required to launch a desktop IDE (skiko/AWT) on NixOS,
+      # where these are not available in the default library search paths.
+      guiLibs = [
+        xorg.libX11
+        xorg.libXext
+        xorg.libXcursor
+        xorg.libXrandr
+        xorg.libXrender
+        xorg.libXi
+        xorg.libXcomposite
+        xorg.libXdamage
+        xorg.libXfixes
+        xorg.libxcb
+        xorg.libXinerama
+        xorg.libXtst
+        xorg.libXft
+        xorg.libXt
+        xorg.libICE
+        xorg.libSM
+        freetype
+        fontconfig
+        libGL
+        libGLU
+      ];
+
+      ideLibraryPath = lib.makeLibraryPath (allBuildInputs ++ guiLibs);
+
       trimmedExtraShellHook = lib.strings.trim extraShellHook;
 
       # Available IDEs that the shell hook can launch
@@ -61,9 +88,10 @@ in
       shellHook = ''
         echo -e "\nStarting ${selectedIde.name} DevShell:\nloading..."
         (
-          unset LD_LIBRARY_PATH LD_PRELOAD
+          export LD_LIBRARY_PATH="${ideLibraryPath}"
+          unset LD_PRELOAD
           exec bash ${selectedIde.script} "$PWD"
-        ) >/dev/null 2>&1 &
+        ) >"/tmp/${selectedIde.name}-devshell.log" 2>&1 &
       '' + (if trimmedExtraShellHook != "" then "\n" + trimmedExtraShellHook else "");
     });
 
