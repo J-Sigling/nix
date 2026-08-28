@@ -47,7 +47,7 @@ in
         };
         air = {
           name = "Air";
-          script = "/home/siglaz/.local/share/JetBrains/Toolbox/apps/air/bin/Air";
+          script = "/home/siglaz/.local/share/JetBrains/Toolbox/scripts/air";
         };
       };
       selectedIde = ides.${ide} or (throw "Unknown ide '${ide}', expected one of: ${lib.concatStringsSep ", " (builtins.attrNames ides)}");
