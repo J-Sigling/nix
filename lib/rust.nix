@@ -60,7 +60,10 @@ in
 
       shellHook = ''
         echo -e "\nStarting ${selectedIde.name} DevShell:\nloading..."
-        exec bash ${selectedIde.script} "$PWD" &
+        (
+          unset LD_LIBRARY_PATH LD_PRELOAD
+          exec bash ${selectedIde.script} "$PWD"
+        ) >/dev/null 2>&1 &
       '' + (if trimmedExtraShellHook != "" then "\n" + trimmedExtraShellHook else "");
     });
 
