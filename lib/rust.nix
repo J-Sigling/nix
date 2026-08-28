@@ -60,7 +60,7 @@ in
 
       shellHook = ''
         echo -e "\nStarting ${selectedIde.name} DevShell:\nloading..."
-        exec bash ${selectedIde.script} . &
+        exec bash ${selectedIde.script} "$PWD" &
       '' + (if trimmedExtraShellHook != "" then "\n" + trimmedExtraShellHook else "");
     });
 
