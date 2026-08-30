@@ -18,7 +18,7 @@
     settings = {
       # Monitor configuration
       monitor = [
-        ",preferred,auto,1"  # Auto-detect all monitors
+        "DP-4,3440x1440@174.96,auto,1"  # MEG 342C OLED at max refresh
       ];
 
       # Input configuration
